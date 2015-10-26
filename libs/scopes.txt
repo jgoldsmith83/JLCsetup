@@ -1,0 +1,11 @@
+unity-scope-yelp
+unity-scope-clementine 
+unity-scope-colourlovers
+unity-scope-gmusicbrowser
+unity-scope-gdrive
+unity-scope-gourmet
+unity-scope-musicstores
+unity-scope-musique
+unity-scope-video-remote
+unity-scope-virtualbox
+unity-scope-zotero

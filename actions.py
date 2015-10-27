@@ -2,13 +2,10 @@ import sys
 from subprocess import call
 import rbt_conf
 import JLCsetup
-<<<<<<< HEAD
 import remote_install
 from Tkinter import *
 import tkMessageBox
 import time
-=======
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
 
 def new_setup(port):
 	call(['clear'])
@@ -17,17 +14,14 @@ def new_setup(port):
 	call(['clear'])
 	rbt_conf.launch()
 	
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
 def undo_setup():
 	call(['clear'])
 	call("libs/resundo.sh", shell=True)
 	rbt_conf.launch()
 
-<<<<<<< HEAD
+
 
 
 def rbt_now():
@@ -35,25 +29,24 @@ def rbt_now():
 
 
 
-=======
+
 def rbt_now():
 	call("sudo reboot now", shell=True)
 
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
+
+
 def rbt_ltr():
 	rbt_conf.launch()
 	sys.exit()
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
+
 def stop():
 	JLCsetup.quit()
 	sys.exit()
 
-<<<<<<< HEAD
+
 
 
 def install(v, str3, str4):
@@ -110,7 +103,6 @@ def teamviewer():
 
 
 
-=======
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
+
 def test():
 	call('./test.sh')

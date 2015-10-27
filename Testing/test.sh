@@ -1,6 +1,6 @@
 #!/bin/bash
 
-<<<<<<< HEAD
+
 function countdown() {
 	for ((i=$1; i>0; i--)); do
 	case $1 in
@@ -22,18 +22,3 @@ function countdown() {
 }
 
 countdown 10
-=======
-readarray tester < test.txt
-
-for i in ${tester[@]}; do
-	echo ${i}
-done
-
-IFS=$'\n' array2=($(< test.txt))
-
-echo ""
-
-for i in ${tester[@]}; do
-	echo ${i}
-done
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6

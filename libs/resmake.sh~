@@ -49,81 +49,29 @@ function countdown() {
 
 #--Function to install and configure only x11vnc for remote desktop
 ###################################################################
-function vnc_only() {
-<<<<<<< HEAD
-	
-	echo "Installing ONLY x11VNC..."
 
-	#--install and configure x11vnc server
-    sudo apt-get -y install x11vnc > /dev/null
-=======
-
-	#--install and configure x11vnc server
-    sudo apt-get install x11vnc
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
-    sudo ./libs/x11config.sh
-
-	#--Set the port number in the x11vnc.conf file and delete the original
-	sed -i.orig "s/9999/$1/" setup/x11vnc.conf
-
-	#--move necessary files to their appropriate locations
-    sudo cp ~/.vnc/$PASS_CHANGE /etc/x11vnc.pass
-    sudo cp libs/x11vnc.conf /etc/init/x11vnc.conf
-    sudo cp libs/x11vnc.desktop /usr/shared/applications/x11vnc.desktop
-
-	#--Start the x11vnc server to run at all times
-    sudo x11vnc -forever -display :0 -shared -rfbauth /etc/x11vnc.pass &
-
-}
 
 #--Function to install and configure both x11vnc and ssh for remote desktop
 #--and remote tunneling
 ####################################
-function vnc_ssh() {
 
-<<<<<<< HEAD
-	echo "Installing x11VNC and ssh/sshd..."
-
-	#--Install and configure openssh(d) and x11vnc server
-    sudo apt-get -y install openssh && sudo apt-get install opensshd > /dev/null
-    sudo apt-get -y install x11vnc > /dev/null
-	sudo ./libs/x11config.sh > /dev/null
-=======
-	#--Install and configure openssh(d) and x11vnc server
-    sudo apt-get install openssh && sudo apt-get install opensshd
-    sudo apt-get install x11vnc
-	sudo ./libs/x11config.sh
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
-	
-	#--Set the port number in the x11vnc.conf file and delete the original
-	sed -i.orig "s/9999/$1/" setup/x11vnc.conf
-
-	#--Move necessary files to their appropriate locations
-    sudo cp ~/.vnc/$PASS_CHANGE /etc/x11vnc.pass
-	sudo cp libs/x11vnc.conf /etc/init/x11vnc.conf
-	sudo cp libs/x11vnc.desktop /usr/shared/applications/x11vnc.desktop
-
-	#--Start the x11vnc server to run at all times
-    sudo x11vnc -forever -display :0 -shared -rfbauth /etc/x11vnc.pass &
-
-}
 
 #--Function to install and configure Teamviewer against the developer's suggestion
 ##################################################################################
 function teamviewer() {
-<<<<<<< HEAD
+
 	echo "Installing Teamviewer against the developer's suggestion..."
 	wget http://download.teamviewer.com/download/version_9x/teamviewer_linux.deb > /dev/null
 	sudo dpkg -i teamviewer_linux.deb > /dev/null
 	sudo apt-get -f install > /dev/null
-=======
+
 	echo "Setting up Teamviewer for remote access..."
 	cd ~/downloads
 	wget http://download.teamviewer.com/download/version_9x/teamviewer_linux.deb
 	sudo dpkg -i ~/Downloads/teamviewer_linux.deb
 	sudo apt-get -f install
 	cd /usr/bin
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
+
 }
 
 
@@ -137,11 +85,11 @@ echo -ne "$PASSWORD\n$PASSWORD\nPublic User\n\n\n\n\ny" | sudo adduser jobsearch
 
 #--Give administrator full access to Public User Home directory
 ###############################################################
-<<<<<<< HEAD
+
 echo -ne "\n\nPreparing Home directory..."
-=======
+
 echo -ne "\n\nPreparing system files and Home directories..."
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
+
 setfacl -R -m u:administrator:rwx /home/Public\ User
 
 
@@ -207,7 +155,7 @@ echo " "
 countdown 10
 echo " "
 echo " "
-<<<<<<< HEAD
+
 #echo "What would you like to install?"
 #echo " "
 #echo "1. SSH Only"
@@ -237,38 +185,37 @@ echo " "
 #    countdown 10
 #esac
 
-python -c "import remote_install; remote_install.launch()"
-python -c "import remote_install; remote_install.quit()"
-=======
-echo "What would you like to install?"
-echo " "
-echo "1. SSH Only"
-echo "2. VNC Only"
-echo "3. Both"
-echo "4. Teamviewer"
-echo "5. None"
-echo " "
-read -p "> " remote
+./../remote_install.sh
 
-case $remote in
-1)
-    sudo apt-get install openssh && sudo apt-get install opensshd
-    ;;
-2)
-    vnc_only
-    ;;
-3)
-    vnc_ssh
-    ;;
-4)
-	teamviewer
-	;;
-5)
-    echo "Skipping ssh and vnc installation. Moving on..."
-    countdown 10
-esac
+#echo "What would you like to install?"
+#echo " "
+#echo "1. SSH Only"
+#echo "2. VNC Only"
+#echo "3. Both"
+#echo "4. Teamviewer"
+#echo "5. None"
+#echo " "
+#read -p "> " remote
 
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
+#case $remote in
+#1)
+#    sudo apt-get install openssh && sudo apt-get install opensshd
+#    ;;
+#2)
+#    vnc_only
+#    ;;
+#3)
+#    vnc_ssh
+#    ;;
+#4)
+#	teamviewer
+#	;;
+#5)
+#    echo "Skipping ssh and vnc installation. Moving on..."
+#   countdown 10
+#esac
+
+
 
 #--Later editions of Ubuntu include scopes and lenses for displaying search results
 #--for shopping sites and music stores in the dash. We need to remove them so as 
@@ -289,19 +236,19 @@ echo ""
 echo ""
 
 for i in ${lenses[@]}; do
-<<<<<<< HEAD
+
 	sudo apt-get remove --purge ${i} > /dev/null
 done
 
 for i in ${scopes[@]}; do
 	sudo apt-get remove --purge ${i} > /dev/null
-=======
+
 	sudo apt-get remove --purge ${i}
 done
 
 for i in ${scopes[@]}; do
 	sudo apt-get remove --purge ${i}
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
+
 done
 
 echo ""
@@ -314,7 +261,7 @@ echo ""
 #--          !!!DO NOT EDIT THIS FILE!!!
 #--TO SPECIFY NEW TRANSMISSION COMPONENTS TO REMOVE: ADD THE COMPONENT PACKAGE NAME TO transmission.txt
 #######################################################################################################
-<<<<<<< HEAD
+
 echo ""
 echo ""
 echo "Removing Transmission bit torrent client..."
@@ -342,10 +289,7 @@ echo "Installing Google Chrome Stable..."
 sudo apt-get install google-chrome-stable > /dev/null
 
 
-#--put x11vnc.conf back the way it was before we started so we can modify it again next time
-#--without having to manually change the default port number back to 5900
-#########################################################################
-=======
+
 readarray trans < transmission_components.txt
 
 for i in ${trans[@]}; do
@@ -353,10 +297,10 @@ for i in ${trans[@]}; do
 done
 
 
+
 #--put x11vnc.conf back the way it was before we started so we can modify it again next time
 #--without having to manually change the default port number back to 5900
-#####################################################
->>>>>>> 1e9d06b9c3dbc15c3e54dd03c61b0127c0aab5f6
+#########################################################################
 if [ -e setup/x11vnc.conf.orig ]; then
 	sed -i.orig "s/$1/9999/" setup/x11vnc.conf
 	rm setup/x11vnc.conf.orig

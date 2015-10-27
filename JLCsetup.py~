@@ -30,7 +30,7 @@ def launch(port):
 	
 	setup = Button(button_frame,text="New Setup",command=lambda: actions.new_setup(port))
 	setup.bind("Enter", actions.setupExpln(expln))
-	setup.bind("Leave", expln.set(""))
+	setup.bind("<Leave>", expln.set(""))
 	setup.pack(anchor=W, padx=40, side="left")
 
 	#undo_frame = Frame(main)

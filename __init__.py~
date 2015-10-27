@@ -1,0 +1,2 @@
+__package__ = "Setup/__init__.py"
+__name__ = "Setup"

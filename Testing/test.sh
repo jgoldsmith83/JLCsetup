@@ -1,5 +1,6 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 
 function countdown() {
 	for ((i=$1; i>0; i--)); do
@@ -22,3 +23,7 @@ function countdown() {
 }
 
 countdown 10
+=======
+
+./../test.sh
+>>>>>>> ea8bae76f03c3bb37c807d577b9fddf08b967c56

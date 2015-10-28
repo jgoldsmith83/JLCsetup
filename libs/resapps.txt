@@ -8,7 +8,7 @@
 /usr/bin/software-center
 /usr/bin/onboard-settings
 /usr/bin/unity-control-center
-/usr/bin/gnome-system-moniter
+/usr/bin/unity-system-moniter
 /usr/bin/gnome-system-log
 /usr/bin/system-config-printer
 /usr/bin/dconf-editor

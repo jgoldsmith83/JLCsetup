@@ -19,9 +19,6 @@ function vnc_only() {
     sudo cp x11vnc.conf /etc/init/x11vnc.conf
     sudo cp x11vnc.desktop /usr/shared/applications/x11vnc.desktop
 
-	#--Start the x11vnc server to run at all times
-    sudo /usr/binx11vnc -bg -reopen -forever -display :0 -o /var/log/x11vnc.log -auth /var/run/lightdm/root/:0 -rfbauth /etc/x11vnc.pass &
-
 }
 
 

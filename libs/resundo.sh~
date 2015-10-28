@@ -11,9 +11,6 @@
 #######################################################
 
 
-#--Imports functions defined in resmake.sh
-##########################################
-. resmake.sh
 
 
 #--These are set as variables because they are command line utilities
@@ -72,8 +69,6 @@ function remove_vnc_ssh() {
 
 
 
-set -e
-
 #--The following lines will remove the ACL restrictions for each of the
 #--restricted programs from the Access Control List. This really has no
 #--necessary function other than cleaning up the Access Control List
@@ -83,7 +78,7 @@ set -e
 #--TO ADD ACL RESTRICTED APPS: ADD THE APP PATH ENTRY TO resapps.txt
 #--TO ALLOW AN APP: REMOVE THE APP PATH ENTRY FROM resapps.txt
 #####################################################################
-IFS=$"\n" resapps=($(< libs/resapps.txt))
+IFS=$'\n' resapps=($(< libs/resapps.txt))
 
 for i in ${resapps[@]}; do
 	echo "Removing restrictions for ${i}..."

@@ -47,22 +47,7 @@ function countdown() {
 	clear
 }
 
-#--Function to install and configure only x11vnc for remote desktop
-###################################################################
 
-
-#--Function to install and configure both x11vnc and ssh for remote desktop
-#--and remote tunneling
-####################################
-
-
-#--Function to install and configure Teamviewer against the developer's suggestion
-##################################################################################
-
-
-
-
-set -e
 
 #--Create jobsearch user accoung as Public User and set password
 ################################################################
@@ -142,6 +127,8 @@ countdown 10
 echo " "
 echo " "
 
+python -c "import remote_install; remote_install.launch($1)"
+
 #echo "What would you like to install?"
 #echo " "
 #echo "1. SSH Only"
@@ -171,7 +158,6 @@ echo " "
 #    countdown 10
 #esac
 
-./../remote_install.sh
 
 #echo "What would you like to install?"
 #echo " "
@@ -272,8 +258,7 @@ echo "Updating package repository..."
 sudo apt-get update > /dev/null
 echo ""
 echo "Installing Google Chrome Stable..."
-sudo apt-get install google-chrome-stable > /dev/null
-
+sudo apt-get install google-chrome-stable #> /dev/null
 
 
 readarray trans < transmission_components.txt
@@ -282,6 +267,13 @@ for i in ${trans[@]}; do
 	sudo apt-get remove --purge ${i}
 done
 
+
+#--Here we remove the 'userlist' from the login screen and disable the 'guest' session.
+#--We will add a manual entry option - this will require the user (administrator or jobsearch)
+#--to manually enter the username of the account they are logging into
+#####################################################################
+sudo mkdir -p /etc/lightdm/lightdm.conf.d
+sudo cp /libs/50-GW-custom-config.conf /etc/lightdm/lightdm.conf.d/50-GW-custom-config.conf
 
 
 #--put x11vnc.conf back the way it was before we started so we can modify it again next time

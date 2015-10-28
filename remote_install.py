@@ -8,6 +8,7 @@ import tkMessageBox
 
 
 def launch(port):
+	str(port)
 	#Create the root window called root
 	root = Tk()
 	#Set the title bar text

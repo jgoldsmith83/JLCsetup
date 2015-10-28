@@ -109,9 +109,9 @@ def launch(port):
 	exit.pack()
 
 	info_frame = Frame(main)
-	info_frame.pack(fill=X, pady=10)
+	info_frame.pack(fill=X, pady=5)
 	obj_frame = Frame(main)
-	obj_frame.pack(pady=10)
+	obj_frame.pack(pady=5)
 
 	info = Label(info_frame, textvariable=expln)
 	info.config(font=expln_font)
@@ -123,5 +123,8 @@ def launch(port):
 
 
 	root.mainloop()
+
+def quit():
+	sys.exit()
 
 

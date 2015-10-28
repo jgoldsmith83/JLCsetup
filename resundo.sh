@@ -11,9 +11,6 @@
 #######################################################
 
 
-#--Imports functions defined in resmake.sh
-##########################################
-. resmake.sh
 
 
 #--These are set as variables because they are command line utilities
@@ -71,8 +68,6 @@ function remove_vnc_ssh() {
 }
 
 
-
-set -e
 
 #--The following lines will remove the ACL restrictions for each of the
 #--restricted programs from the Access Control List. This really has no
@@ -147,7 +142,7 @@ case $remote in
 	;;
 5)
 	echo "Nothing to remove. Moving on..."
-	countdown 10
+	countdown 5
 esac
 
 echo " "

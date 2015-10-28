@@ -83,13 +83,15 @@ for i in ${resapps[@]}; do
 	sudo setfacl -m u:jobsearch:0 ${i}
 	echo ""
 done
+
 echo ""
 echo "Setting full restriction for administrative utilities..."
-setfacl -m u:jobsearch:0 $PASS_CHANGE
-setfacl -m u:jobsearch:0 $DEV_MAKE
-setfacl -m u:jobsearch:0 $CHANGE_PERMS
-setfacl -m u:jobsearch:0 $REPOSITORIES
-setfacl -m u:jobsearch:0 $APT_GET
+setfacl -m u:jobsearch:0 /usr/bin/$PASS_CHANGE
+setfacl -m u:jobsearch:0 /usr/bin/$DEV_MAKE
+setfacl -m u:jobsearch:0 /usr/bin/$CHANGE_PERMS
+setfacl -m u:jobsearch:0 /usr/bin/$REPOSITORIES
+setfacl -m u:jobsearch:0 /usr/bin/$APT_GET
+
 echo "Granting access to Home folder..."
 sudo setfacl -R -m u:jobsearch:rwx /home/Public\ User
 
@@ -114,78 +116,8 @@ sudo setfacl -R -m u:jobsearch:rwx /home/Public\ User
 #--The file /etc/x11vnc.conf will need to be modified for each machine to 
 #--reflect the correct port it will listen on.
 ##############################################
-echo " "
-echo " "
-echo "We need to install ssh for remote command-line access and/or"
-echo "x11vnc for remote desktop access. You may choose to install"
-echo "either or both depending on the machine and its intended use."
-echo "Alternatively, you may opt to use Teamviewer, however this"
-echo "option is not recommended as it requires additional setup"
-echo "procedures which are not covered in this script or it's comments."
-echo " "
-countdown 10
-echo " "
-echo " "
 
-#echo "What would you like to install?"
-#echo " "
-#echo "1. SSH Only"
-#echo "2. VNC Only"
-#echo "3. Both"
-#echo "4. Teamviewer"
-#echo "5. None"
-#echo " "
-#read -p "> " remote
-
-#case $remote in
-#1)
-#	echo "Installing Open SSH..."
-#    sudo apt-get install openssh && sudo apt-get install opensshd > /dev/null
-#    ;;
-#2)
-#    vnc_only
-#    ;;
-#3)
-#    vnc_ssh
-#    ;;
-#4)
-#	teamviewer
-#	;;
-35)
-#    echo "Skipping ssh and vnc installation. Moving on..."
-#    countdown 10
-#esac
-
-
-#echo "What would you like to install?"
-#echo " "
-#echo "1. SSH Only"
-#echo "2. VNC Only"
-#echo "3. Both"
-#echo "4. Teamviewer"
-#echo "5. None"
-#echo " "
-#read -p "> " remote
-
-#case $remote in
-#1)
-#    sudo apt-get install openssh && sudo apt-get install opensshd
-#    ;;
-#2)
-#    vnc_only
-#    ;;
-#3)
-#    vnc_ssh
-#    ;;
-#4)
-#	teamviewer
-#	;;
-#5)
-#    echo "Skipping ssh and vnc installation. Moving on..."
-#   countdown 10
-#esac
-
-
+python -c "import remote_install; remote_install.launch($1)"
 
 #--Later editions of Ubuntu include scopes and lenses for displaying search results
 #--for shopping sites and music stores in the dash. We need to remove them so as 
@@ -208,15 +140,17 @@ echo ""
 for i in ${lenses[@]}; do
 
 	sudo apt-get remove --purge ${i} > /dev/null
+
 done
 
 for i in ${scopes[@]}; do
+
 	sudo apt-get remove --purge ${i} > /dev/null
 
-	sudo apt-get remove --purge ${i}
 done
 
 for i in ${scopes[@]}; do
+
 	sudo apt-get remove --purge ${i}
 
 done
@@ -235,10 +169,12 @@ echo ""
 echo ""
 echo ""
 echo "Removing Transmission bit torrent client..."
-readarray trans < transmission_components.txt
+readarray trans < libs/transmission_components.txt
 
 for i in ${trans[@]}; do
+
 	sudo apt-get remove --purge ${i} > /dev/null
+
 done
 
 
@@ -256,14 +192,7 @@ echo "Updating package repository..."
 sudo apt-get update > /dev/null
 echo ""
 echo "Installing Google Chrome Stable..."
-sudo apt-get install google-chrome-stable #> /dev/null
-
-
-readarray trans < transmission_components.txt
-
-for i in ${trans[@]}; do
-	sudo apt-get remove --purge ${i}
-done
+sudo apt-get install google-chrome-stable > /dev/null
 
 
 #--Here we remove the 'userlist' from the login screen and disable the 'guest' session.
@@ -277,8 +206,8 @@ sudo cp /libs/50-GW-custom-config.conf /etc/lightdm/lightdm.conf.d/50-GW-custom-
 #--put x11vnc.conf back the way it was before we started so we can modify it again next time
 #--without having to manually change the default port number back to 5900
 #########################################################################
-if [ -e setup/x11vnc.conf.orig ]; then
-	sed -i.orig "s/$1/9999/" setup/x11vnc.conf
+if [ -e libs/x11vnc.conf.orig ]; then
+	sed -i.orig "s/$1/9999/" libs/x11vnc.conf
 	rm setup/x11vnc.conf.orig
 fi
 
@@ -288,4 +217,4 @@ echo "Operation Complete."
 echo " "
 echo " "
 
-#exit 0
+exit 0

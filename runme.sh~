@@ -1,39 +1,5 @@
 #!/bin/bash
 
-#dir=$(pwd)
-
-
-#function menu() {
-#	clear
-#	echo "Select option:"
-#	echo 
-#	echo "1. New Setup"
-#	echo "2. Undo Setup"
-#	echo "3. Exit"
-#	echo
-#	echo
-#	read -p "> " _do
-#}
-
-#function parse_choice() {
-#	if [ $_do = 1 ]; then
-#		cd libs
-#		su -c ./resmake.sh root
-#	elif [ $_do = 2 ]; then
-#		cd libs
-#		su -c ./resundo.sh root
-#	elif [ $_do = 3 ]; then
-#		clear
-#		exit
-#	else
-#		echo -ne "\n\nAvailable options are 1, 2, or 3...\n"
-#		sleep 2
-#		menu
-#	fi
-#}
-
-#menu
-#parse_choice
 
 if [ ! $UID -eq 0 ]; then
 	echo ""
@@ -75,7 +41,7 @@ if ! [[ "$1" =~ ^[0-9]+$ ]]; then
 	echo ""
 	echo "      ************************************************************"
 	echo "      *                                                          *"
-	echo "      *                 $1 is not a number...                    *"
+	echo "      *                 $1 is not a number...                    "
 	echo "      *                                                          *"
 	echo "      *  Port number must be a number. Try again like so:        *"
 	echo "      *               sudo ./runme.sh 5900                       *"
@@ -97,18 +63,18 @@ if ! [[ "$1" =~ ^[0-9]+$ ]]; then
 fi
 
 
-#sudo apt-get install python-tk
+sudo apt-get install python-tk
 
 sudo chmod a+x remote_install.py
 sudo chmod a+x JLCsetup.py
 sudo chmod a+x rbt_conf.py
 
-sudo chmod a+x libs/resmake.sh
-sudo chmod a+x libs/resundo.sh
-sudo chmod a+x libs/x11config.sh
-sudo chmod a+x libs/vnc_only.sh
-sudo chmod a+x libs/vnc_ssh.sh
-sudo chmod a+x libs/teamviewer.sh
+sudo chmod a+x resmake.sh
+sudo chmod a+x resundo.sh
+sudo chmod a+x x11config.sh
+sudo chmod a+x vnc_only.sh
+sudo chmod a+x vnc_ssh.sh
+sudo chmod a+x teamviewer.sh
 
 
 sudo python -c 'import JLCsetup; JLCsetup.launch('$1')'

@@ -11,11 +11,12 @@ import time
 
 
 def new_setup(port):
+	port = str(port)
+	
 	call(['clear'])
-	#call(['sudo su'])
-	call('libs/resmake.sh', shell=True)
+	call("sudo ./resmake.sh " + port, shell=True)
 	call(['clear'])
-	remote_install.launch(port)
+	#call("remote_install.sh", shell=True)
 	rbt_conf.launch()
 	
 
@@ -23,14 +24,8 @@ def new_setup(port):
 
 def undo_setup():
 	call(['clear'])
-	call("libs/resundo.sh", shell=True)
+	call("sudo ./resundo.sh", shell=True)
 	rbt_conf.launch()
-
-
-
-
-def rbt_now():
-	call("sudo reboot now", shell=True)
 
 
 
@@ -55,6 +50,8 @@ def stop():
 
 
 def install(v, str3, str4, port):
+	str(port)
+
 	if v.get() == "vnc":
 		str3.set("Installing x11VNC...Please wait.")
 		vnc(port)
@@ -69,7 +66,7 @@ def install(v, str3, str4, port):
 		str4.set("***NOT RECOMMENDED***")
 		teamviewer()
 	else:
-		tkMessageBox.showinfo("Selection Error", "You must select an option to install")
+		tkMessageBox.showinfo("Selection Error", "  Select an option to install  ")
 		v.set("")
 		
 
@@ -77,16 +74,18 @@ def install(v, str3, str4, port):
 
 def vnc(port):
 	#install x11vnc
-	tkMessageBox.showwarning("JLC Remote Setup", "Remember this option requires port forwarding.")
-	call("./libs/vnc_only.sh " + port, shell=True)
+
+	port = str(port)
+	tkMessageBox.showwarning("JLC Remote Setup", "Remember x11VNC requires port forwarding.")
+	call("sudo ./vnc_only.sh " + port, shell=True)
 	remote_install.stop()
 
 
 
 def ssh():
 	#install ssh
-	tkMessageBox.showinfo("JLC Remote Setup", "Remember this option requires port forwarding.")
-	call("./libs/ssh.sh", shell=True)
+	tkMessageBox.showinfo("JLC Remote Setup", "Remember x11VNC requires port forwarding.")
+	call("sudo ./ssh.sh", shell=True)
 	remote_install.stop()
 
 
@@ -94,21 +93,19 @@ def ssh():
 def vnc_ssh(port):
 	#install x11vnc
 	#install ssh
-	tkMessageBox.showinfo("JLC Remote Setup", "Remember this option requires port forwarding.")
-	call("./libs/vnc_ssh.sh " + port, shell=True)
+
+	port = str(port)
+	tkMessageBox.showinfo("JLC Remote Setup", "Remember x11VNC requires port forwarding.")
+	call("sudo ./vnc_ssh.sh " + port, shell=True)
 	remote_install.stop()
 
 
 
 def teamviewer():
 	#install teamviewer
-	tkMessageBox.showinfo("JLC Remote Setup", "Remember this option is NOT RECOMMENDED.")
-	call("./libs/teamviewer.sh", shell=True)
+	tkMessageBox.showinfo("JLC Remote Setup", "Remember Teamviewer is NOT RECOMMENDED.")
+	call("teamviewer.sh", shell=True)
 	remote_install.stop()
 
 
-
-
-def test():
-	call('./test.sh')
 

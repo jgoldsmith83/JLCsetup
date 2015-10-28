@@ -7,7 +7,7 @@ import tkMessageBox
 
 
 
-def launch():
+def launch(port):
 	#Create the root window called root
 	root = Tk()
 	#Set the title bar text
@@ -54,7 +54,7 @@ def launch():
 	Radiobutton(main, text="Teamviewer", variable=v, value="team").pack(anchor=W, padx=20)
 	
 	#Button used to run install() based on user input - the kick off
-	install = Button(main, text="INSTALL NOW", command=lambda: actions.install(v, str3, str4))
+	install = Button(main, text="INSTALL NOW", command=lambda: actions.install(v, str3, str4, port))
 	install.pack(pady=10)
 
 	#Label used to display str3 - value set in actions.install()

@@ -41,7 +41,7 @@ if ! [[ "$1" =~ ^[0-9]+$ ]]; then
 	echo ""
 	echo "      ************************************************************"
 	echo "      *                                                          *"
-	echo "      *                 $1 is not a number...                    *"
+	echo "      *          Sorry, that's not a port number...              *"
 	echo "      *                                                          *"
 	echo "      *  Port number must be a number. Try again like so:        *"
 	echo "      *               sudo ./runme.sh 5900                       *"
@@ -69,12 +69,12 @@ sudo chmod a+x remote_install.py
 sudo chmod a+x JLCsetup.py
 sudo chmod a+x rbt_conf.py
 
-sudo chmod a+x libs/resmake.sh
-sudo chmod a+x libs/resundo.sh
-sudo chmod a+x libs/x11config.sh
-sudo chmod a+x libs/vnc_only.sh
-sudo chmod a+x libs/vnc_ssh.sh
-sudo chmod a+x libs/teamviewer.sh
+sudo chmod a+x resmake.sh
+sudo chmod a+x resundo.sh
+sudo chmod a+x x11config.sh
+sudo chmod a+x vnc_only.sh
+sudo chmod a+x vnc_ssh.sh
+sudo chmod a+x teamviewer.sh
 
 
 sudo python -c 'import JLCsetup; JLCsetup.launch('$1')'

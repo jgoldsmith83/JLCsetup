@@ -9,10 +9,10 @@ function vnc_ssh() {
 	#--Install and configure openssh(d) and x11vnc server
     sudo apt-get -y install openssh && sudo apt-get install opensshd > /dev/null
     sudo apt-get -y install x11vnc > /dev/null
-	sudo ./x11config.sh > /dev/null
+	sudo ./libs/x11config.sh > /dev/null
 
 	#--Set the port number in the x11vnc.conf file and delete the original
-	sed -i.orig "s/9999/$1/" setup/x11vnc.conf
+	sed -i.orig "s/9999/$1/" libs/x11vnc.conf
 
 	#--Move necessary files to their appropriate locations
     sudo cp ~/.vnc/$PASS_CHANGE /etc/x11vnc.pass

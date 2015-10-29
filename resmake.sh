@@ -18,11 +18,11 @@ PASSWORD="jobsearch"
 #--These are set as variables because they are command line utilities
 #--that will otherwise be interpreted and run when used in the script
 #####################################################################
-PASS_CHANGE="passwd"
-DEV_MAKE="make"
+PASS_CHANGE="/usr/bin/passwd"
+DEV_MAKE="/usr/bin/make"
 CHANGE_PERMS="/bin/chmod"
-REPOSITORIES="add-apt-repository"
-APT_GET="apt-get"
+REPOSITORIES="/usr/bin/apt-add-repository"
+APT_GET="/usr/bin/apt-get"
 
 #--Creates a countdown timer that will display a countdown while
 #--instructional portions of the script are displayed.
@@ -139,19 +139,13 @@ echo ""
 
 for i in ${lenses[@]}; do
 
-	sudo apt-get remove --purge ${i} > /dev/null
+	sudo apt-get -y remove --purge ${i}
 
 done
 
 for i in ${scopes[@]}; do
 
-	sudo apt-get remove --purge ${i} > /dev/null
-
-done
-
-for i in ${scopes[@]}; do
-
-	sudo apt-get remove --purge ${i}
+	sudo apt-get -y remove --purge ${i}
 
 done
 
@@ -173,7 +167,7 @@ readarray trans < libs/transmission_components.txt
 
 for i in ${trans[@]}; do
 
-	sudo apt-get remove --purge ${i} > /dev/null
+	sudo apt-get -y remove --purge ${i}
 
 done
 
@@ -192,7 +186,7 @@ echo "Updating package repository..."
 sudo apt-get update > /dev/null
 echo ""
 echo "Installing Google Chrome Stable..."
-sudo apt-get install google-chrome-stable > /dev/null
+sudo apt-get -y install google-chrome-stable > /dev/null
 
 
 #--Here we remove the 'userlist' from the login screen and disable the 'guest' session.
@@ -200,7 +194,7 @@ sudo apt-get install google-chrome-stable > /dev/null
 #--to manually enter the username of the account they are logging into
 #####################################################################
 sudo mkdir -p /etc/lightdm/lightdm.conf.d
-sudo cp /libs/50-GW-custom-config.conf /etc/lightdm/lightdm.conf.d/50-GW-custom-config.conf
+sudo cp libs/50-GW-custom-config.conf /etc/lightdm/lightdm.conf.d/50-GW-custom-config.conf
 
 
 #--put x11vnc.conf back the way it was before we started so we can modify it again next time

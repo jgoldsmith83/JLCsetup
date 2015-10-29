@@ -21,7 +21,7 @@ PASSWORD="jobsearch"
 PASS_CHANGE="passwd"
 DEV_MAKE="make"
 CHANGE_PERMS="/bin/chmod"
-REPOSITORIES="add-apt-repository"
+REPOSITORIES="apt-add-repository"
 APT_GET="apt-get"
 
 #--Creates a countdown timer that will display a countdown while
@@ -139,19 +139,13 @@ echo ""
 
 for i in ${lenses[@]}; do
 
-	sudo apt-get remove --purge ${i} > /dev/null
+	sudo apt-get -y remove --purge ${i}
 
 done
 
 for i in ${scopes[@]}; do
 
-	sudo apt-get remove --purge ${i} > /dev/null
-
-done
-
-for i in ${scopes[@]}; do
-
-	sudo apt-get remove --purge ${i}
+	sudo apt-get -y remove --purge ${i}
 
 done
 
@@ -173,7 +167,7 @@ readarray trans < libs/transmission_components.txt
 
 for i in ${trans[@]}; do
 
-	sudo apt-get remove --purge ${i} > /dev/null
+	sudo apt-get -y remove --purge ${i}
 
 done
 
@@ -200,7 +194,7 @@ sudo apt-get install google-chrome-stable > /dev/null
 #--to manually enter the username of the account they are logging into
 #####################################################################
 sudo mkdir -p /etc/lightdm/lightdm.conf.d
-sudo cp /libs/50-GW-custom-config.conf /etc/lightdm/lightdm.conf.d/50-GW-custom-config.conf
+sudo cp libs/50-GW-custom-config.conf /etc/lightdm/lightdm.conf.d/50-GW-custom-config.conf
 
 
 #--put x11vnc.conf back the way it was before we started so we can modify it again next time
@@ -208,7 +202,7 @@ sudo cp /libs/50-GW-custom-config.conf /etc/lightdm/lightdm.conf.d/50-GW-custom-
 #########################################################################
 if [ -e libs/x11vnc.conf.orig ]; then
 	sed -i.orig "s/$1/9999/" libs/x11vnc.conf
-	rm setup/x11vnc.conf.orig
+	rm libs/x11vnc.conf.orig
 fi
 
 echo " "

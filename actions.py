@@ -43,8 +43,8 @@ def rbt_ltr():
 
 
 def stop():
-	JLCsetup.quit()
-	sys.exit()
+	JLCsetup.quit(0)
+	sys.exit(0)
 
 
 
@@ -90,7 +90,7 @@ def ssh():
 
 
 
-def vnc_ssh(port):
+def vnc_ssh(port, ):
 	#install x11vnc
 	#install ssh
 

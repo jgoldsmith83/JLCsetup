@@ -18,7 +18,7 @@ if [ ! $UID -eq 0 ]; then
 	exit 1
 fi
 
-if [ -z $1 ]; then
+#if [ -z $1 ]; then
 	echo ""
 	echo "      ************************************************************"
 	echo "      *                                                          *"
@@ -33,10 +33,10 @@ if [ -z $1 ]; then
     echo ""
 	echo ""
 
-	exit 3
-fi
+	#exit 3
+#fi
 
-if ! [[ "$1" =~ ^[0-9]+$ ]]; then
+#if ! [[ "$1" =~ ^[0-9]+$ ]]; then
 	echo ""
 	echo ""
 	echo "      ************************************************************"
@@ -59,8 +59,8 @@ if ! [[ "$1" =~ ^[0-9]+$ ]]; then
     echo ""
 	echo ""
 
-	exit 2
-fi
+	#exit 2
+#fi
 
 
 sudo apt-get install python-tk
@@ -77,7 +77,7 @@ sudo chmod a+x vnc_ssh.sh
 sudo chmod a+x teamviewer.sh
 
 
-sudo python -c 'import JLCsetup; JLCsetup.launch('$1')'
+sudo python -c 'import JLCsetup; JLCsetup.launch()'
 #sudo python -c 'import remote_install; remote_install.launch('$1')'
 
 

@@ -18,7 +18,7 @@ if [ ! $UID -eq 0 ]; then
 	exit 1
 fi
 
-if [ -z $1 ]; then
+#if [ -z $1 ]; then
 	echo ""
 	echo "      ************************************************************"
 	echo "      *                                                          *"
@@ -36,12 +36,12 @@ if [ -z $1 ]; then
 	exit 3
 fi
 
-if ! [[ "$1" =~ ^[0-9]+$ ]]; then
+#if ! [[ "$1" =~ ^[0-9]+$ ]]; then
 	echo ""
 	echo ""
 	echo "      ************************************************************"
 	echo "      *                                                          *"
-	echo "      *                 $1 is not a number...                    "
+	echo "      *          Sorry, that's not a port number...              *"
 	echo "      *                                                          *"
 	echo "      *  Port number must be a number. Try again like so:        *"
 	echo "      *               sudo ./runme.sh 5900                       *"
@@ -77,7 +77,7 @@ sudo chmod a+x vnc_ssh.sh
 sudo chmod a+x teamviewer.sh
 
 
-sudo python -c 'import JLCsetup; JLCsetup.launch('$1')'
+sudo python -c 'import JLCsetup; JLCsetup.launch()'
 #sudo python -c 'import remote_install; remote_install.launch('$1')'
 
 

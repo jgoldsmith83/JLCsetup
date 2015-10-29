@@ -17,9 +17,12 @@ function vnc_ssh() {
 	#--Move necessary files to their appropriate locations
     sudo cp ~/.vnc/$PASS_CHANGE /etc/x11vnc.pass
 	sudo cp libs/x11vnc.conf /etc/init/x11vnc.conf
-	sudo cp libs/x11vnc.desktop /usr/shared/applications/x11vnc.desktop
+	sudo cp libs/x11vnc.desktop /usr/share/applications/x11vnc.desktop
+	sudo setfacl -m u:jobsearch:0 /usr/share/x11vnc.desktop
 
 }
 
 
 vnc_ssh
+
+exit 0

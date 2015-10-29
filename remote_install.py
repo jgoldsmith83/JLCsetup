@@ -73,5 +73,5 @@ def launch(port):
 #Deprecated - keeping just in case
 def stop():
 	#exit window
-	sys.exit()
+	sys.exit(0)
 

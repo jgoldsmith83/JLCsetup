@@ -43,8 +43,8 @@ def rbt_ltr():
 
 
 def stop():
-	JLCsetup.quit()
-	sys.exit()
+	JLCsetup.quit(0)
+	sys.exit(0)
 
 
 
@@ -54,17 +54,17 @@ def install(v, str3, str4, port):
 
 	if v.get() == "vnc":
 		str3.set("Installing x11VNC...Please wait.")
-		vnc(port)
+		vnc(port, 0)
 	elif v.get() == "ssh":
 		str3.set("Installing SSH...Please wait.")
-		ssh()
+		ssh(0)
 	elif v.get() == "both":
 		str3.set("Installing x11VNC and SSH...Please wait.")
-		vnc_ssh(port)
+		vnc_ssh(port, 0)
 	elif v.get() == "team":
 		str3.set("Installing Teamviewer...Please wait.")
 		str4.set("***NOT RECOMMENDED***")
-		teamviewer()
+		teamviewer(0)
 	else:
 		tkMessageBox.showinfo("Selection Error", "  Select an option to install  ")
 		v.set("")
@@ -72,46 +72,40 @@ def install(v, str3, str4, port):
 
 
 
-def vnc(port):
-	str(port)
-
+def vnc(port, x):
 	#install x11vnc
+
+	port = str(port)
 	tkMessageBox.showwarning("JLC Remote Setup", "Remember x11VNC requires port forwarding.")
 	call("sudo ./vnc_only.sh " + port, shell=True)
-	remote_install.stop()
+	remote_install.stop(x)
 
 
 
-def ssh():
+def ssh(x):
 	#install ssh
 	tkMessageBox.showinfo("JLC Remote Setup", "Remember x11VNC requires port forwarding.")
 	call("sudo ./ssh.sh", shell=True)
-	remote_install.stop()
+	remote_install.stop(x)
 
 
 
-def vnc_ssh(port):
-	str(port)
-
+def vnc_ssh(port, x):
 	#install x11vnc
 	#install ssh
+
+	port = str(port)
 	tkMessageBox.showinfo("JLC Remote Setup", "Remember x11VNC requires port forwarding.")
 	call("sudo ./vnc_ssh.sh " + port, shell=True)
-	remote_install.stop()
+	remote_install.stop(x)
 
 
 
-def teamviewer():
+def teamviewer(x):
 	#install teamviewer
 	tkMessageBox.showinfo("JLC Remote Setup", "Remember Teamviewer is NOT RECOMMENDED.")
 	call("teamviewer.sh", shell=True)
-	remote_install.stop()
+	remote_install.stop(x)
 
 
-
-
-def test(port):
-	print type(port)
-	str(port)
-	print type(port)
 

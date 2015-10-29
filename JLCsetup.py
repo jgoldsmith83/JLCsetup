@@ -2,11 +2,13 @@
 
 import actions
 from Tkinter import *
+import tkMessageBox
+import re
 import sys
 from PIL import Image
 
 
-def launch(port):
+def launch():
 
 
 
@@ -16,6 +18,43 @@ def launch(port):
 	icon = PhotoImage(file = 'images/GW_icon.ppm')
 	#root.wm_iconbitmap('@GW_icon.ppm')
 	root.tk.call('wm', 'iconphoto', root._w, icon)
+
+	def input_port():
+	
+		root = Tk()
+		root.title("Port Number")
+		root.geometry("200x70")
+	
+	
+		def send_port():
+			port = entry.get()
+			port = str(port)
+	
+			if len(port) == 0:
+				tkMessageBox.showerror("Error","We're really going to need a port number to make this work...")
+			elif re.match('^[0-9]+$',port) is None:
+				tkMessageBox.showwarning("Error","Port number should be a number.")
+			else:
+				actions.new_setup(port)
+
+
+		str1 = StringVar()
+		str1.set("Enter port number: ")
+	
+		main = Frame(root)
+		main.pack()
+	
+		text = Label(main, textvariable=str1)
+		text.pack()
+	
+		entry = Entry(main)
+		#entry.bind('<Return>', send_port(entry.get()))
+		entry.pack()
+
+		submit = Button(main, text="Start", command=send_port)
+		submit.pack()
+		
+		root.mainloop()
 
 
 	def set_setup_expln(event):
@@ -86,7 +125,7 @@ def launch(port):
 	setup_frame.pack(anchor=W, padx=40, side="left")
 
 	
-	setup = Button(setup_frame,text="New Setup",command=lambda: actions.new_setup(port))
+	setup = Button(setup_frame,text="New Setup",command=input_port())
 	setup.bind('<Enter>', set_setup_expln)
 	setup.bind("<Leave>", unset_setup_expln)
 	setup.pack()
@@ -124,7 +163,11 @@ def launch(port):
 
 	root.mainloop()
 
-def quit():
-	sys.exit()
+
+	
+
+
+def quit(x):
+	sys.exit(x)
 
 

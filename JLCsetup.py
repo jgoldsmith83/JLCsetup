@@ -6,55 +6,18 @@ import tkMessageBox
 import re
 import sys
 from PIL import Image
+from subprocess import call
 
 
 def launch():
 
-
-
 	root = Tk()
 	root.title("Palmetto Goodwill - JLC Setup")
 	root.geometry("500x320+100+100")
+	root.resizable(0,0)
 	icon = PhotoImage(file = 'images/GW_icon.ppm')
 	#root.wm_iconbitmap('@GW_icon.ppm')
 	root.tk.call('wm', 'iconphoto', root._w, icon)
-
-	def input_port():
-	
-		root = Tk()
-		root.title("Port Number")
-		root.geometry("200x70")
-	
-	
-		def send_port():
-			port = entry.get()
-			port = str(port)
-	
-			if len(port) == 0:
-				tkMessageBox.showerror("Error","We're really going to need a port number to make this work...")
-			elif re.match('^[0-9]+$',port) is None:
-				tkMessageBox.showwarning("Error","Port number should be a number.")
-			else:
-				actions.new_setup(port)
-
-
-		str1 = StringVar()
-		str1.set("Enter port number: ")
-	
-		main = Frame(root)
-		main.pack()
-	
-		text = Label(main, textvariable=str1)
-		text.pack()
-	
-		entry = Entry(main)
-		#entry.bind('<Return>', send_port(entry.get()))
-		entry.pack()
-
-		submit = Button(main, text="Start", command=send_port)
-		submit.pack()
-		
-		root.mainloop()
 
 
 	def set_setup_expln(event):
@@ -125,7 +88,7 @@ def launch():
 	setup_frame.pack(anchor=W, padx=40, side="left")
 
 	
-	setup = Button(setup_frame,text="New Setup",command=input_port())
+	setup = Button(setup_frame,text="New Setup",command=input_port)
 	setup.bind('<Enter>', set_setup_expln)
 	setup.bind("<Leave>", unset_setup_expln)
 	setup.pack()
@@ -164,10 +127,49 @@ def launch():
 	root.mainloop()
 
 
+def input_port():
 	
+	root = Tk()
+	root.title("Port Number")
+	root.geometry("200x70+250+310")
+	root.resizable(0,0)
+
+	def send_port(event):
+		port = entry.get()
+		port = str(port)
+
+		if len(port) == 0:
+			tkMessageBox.showerror("Error","We need a port number to make this work...")
+			entry.focus_set()
+		elif re.match('^[0-9]+$',port) is None:
+			tkMessageBox.showwarning("Error","Port number should be a number.")
+			root.focus_set()
+			entry.focus_set()
+		else:
+			#actions.new_setup(port)
+			call("Testing/test.sh " + port)
+			root.destroy()
+	
+	main = Frame(root)
+	main.pack()
+	
+	text = Label(main, text="Enter port number:")
+	text.pack()
+	
+	entry = Entry(main)
+	entry.focus_set()
+	entry.bind('<Return>', send_port)
+	entry.pack()
+
+	submit = Button(main, text="Start")
+	submit.bind('<Button-1>', send_port)
+	submit.pack()
+		
+	root.mainloop()
 
 
-def quit(x):
-	sys.exit(x)
+
+def quit():
+	sys.exit(0)
 
 

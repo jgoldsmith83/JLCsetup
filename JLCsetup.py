@@ -73,8 +73,7 @@ def launch():
 				root.focus_set()
 				entry.focus_set()
 			else:
-				#actions.new_setup(port)
-				call("Testing/test.sh " + port)
+				actions.new_setup(port)
 		
 		info.pack_forget()
 		expln.set("Enter port number:")
@@ -89,7 +88,11 @@ def launch():
 		entry.pack()
 
 		start = Button(obj_frame,text="Start",command=send_port)
-		start.pack()
+		start.pack(pady=5)
+
+		setup.unbind('<Enter>')
+		undo.unbind('<Enter>')
+		exit.unbind('<Enter>')
 
 		
 

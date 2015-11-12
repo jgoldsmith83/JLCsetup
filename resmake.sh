@@ -47,6 +47,11 @@ function countdown() {
 	clear
 }
 
+#--Copy resume templates to /etc/skel so the files will be
+#--automatically added to the Jobsearch user's desktop
+######################################################
+sudo cp -r libs/Desktop /etc/skel
+
 
 
 #--Create jobsearch user accoung as Public User and set password
@@ -191,7 +196,7 @@ sudo apt-get -y install google-chrome-stable > /dev/null
 #--Here we remove the 'userlist' from the login screen and disable the 'guest' session.
 #--We will add a manual entry option - this will require the user (administrator or jobsearch)
 #--to manually enter the username of the account they are logging into
-#####################################################################
+######################################################################
 sudo mkdir -p /etc/lightdm/lightdm.conf.d
 sudo cp libs/50-GW-custom-config.conf /etc/lightdm/lightdm.conf.d/50-GW-custom-config.conf
 

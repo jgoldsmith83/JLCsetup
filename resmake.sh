@@ -31,7 +31,7 @@ function countdown() {
 	for ((i=$1; i>0; i--)); do
 	case $1 in
 	30)
-	    	echo -en "Computer will restart in: " $i " ...press any key to continue...\r"
+	    echo -en "Computer will restart in: " $i " ...press any key to continue...\r"
 		;;
 	[10,20]*)
 		echo -en "Automation will resume in: " $i "  ...press any key to coninue...\r"
@@ -56,7 +56,7 @@ sudo cp -r libs/Desktop /etc/skel
 
 #--Create jobsearch user accoung as Public User and set password
 ################################################################
-echo -ne "$PASSWORD\n$PASSWORD\nPublic User\n\n\n\n\ny" | sudo adduser jobsearch --home /home/Public\ User
+echo -ne "$PASSWORD\n$PASSWORD\n$USER_NAME\n\n\n\n\ny" | sudo adduser jobsearch --home /home/Public\ User
 
 
 #--Give administrator full access to Public User Home directory

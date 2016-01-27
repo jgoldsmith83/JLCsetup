@@ -102,6 +102,9 @@ echo ""
 echo -ne "Removing Public User home directory"
 sleep 5
 
+echo "Returning /etc/skel to original state"
+sudo rm -r /etc/skel/Desktop
+
 
 #--Removing SSH or VNC (or both/neither) is optional. It is suggested
 #--that you remove both unless you plan to use this machine for similar

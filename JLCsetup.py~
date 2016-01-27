@@ -16,7 +16,6 @@ def launch():
 	root.geometry("500x320+100+100")
 	root.resizable(0,0)
 	icon = PhotoImage(file = 'images/GW_icon.ppm')
-	#root.wm_iconbitmap('@GW_icon.ppm')
 	root.tk.call('wm', 'iconphoto', root._w, icon)
 
 
@@ -53,7 +52,7 @@ def launch():
 		info.pack_forget()
 		info.config(anchor=E)
 		info.pack(side='right')
-		objective.set("-Take no action\n" +
+		objective.set("-Do Nothing\n" +
 					  "-Exit Setup")
 
 	def unset_exit_expln(event):
@@ -73,8 +72,7 @@ def launch():
 				root.focus_set()
 				entry.focus_set()
 			else:
-				#actions.new_setup(port)
-				call("./test.sh " + port, shell=True)
+				actions.new_setup(port)
 		
 		info.pack_forget()
 		expln.set("Enter port number:")

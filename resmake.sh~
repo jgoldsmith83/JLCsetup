@@ -31,7 +31,7 @@ function countdown() {
 	for ((i=$1; i>0; i--)); do
 	case $1 in
 	30)
-	    	echo -en "Computer will restart in: " $i " ...press any key to continue...\r"
+	    echo -en "Computer will restart in: " $i " ...press any key to continue...\r"
 		;;
 	[10,20]*)
 		echo -en "Automation will resume in: " $i "  ...press any key to coninue...\r"
@@ -46,6 +46,11 @@ function countdown() {
 	done
 	clear
 }
+
+#--Copy resume templates to /etc/skel so the files will be
+#--automatically added to the Jobsearch user's desktop
+######################################################
+sudo cp -r libs/Desktop /etc/skel
 
 
 
@@ -203,11 +208,6 @@ if [ -e libs/x11vnc.conf.orig ]; then
 	sed -i.orig "s/$1/9999/" libs/x11vnc.conf
 	rm libs/x11vnc.conf.orig
 fi
-
-#--Copy resume templates to /etc/skel so the files will be
-#--automatically added to the Jobsearch user's desktop
-######################################################
-sudo cp -r libs/Desktop/ /etc/skel/
 
 echo " "
 echo " "

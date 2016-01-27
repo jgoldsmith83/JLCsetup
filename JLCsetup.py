@@ -16,7 +16,6 @@ def launch():
 	root.geometry("500x320+100+100")
 	root.resizable(0,0)
 	icon = PhotoImage(file = 'images/GW_icon.ppm')
-	#root.wm_iconbitmap('@GW_icon.ppm')
 	root.tk.call('wm', 'iconphoto', root._w, icon)
 
 
@@ -53,7 +52,7 @@ def launch():
 		info.pack_forget()
 		info.config(anchor=E)
 		info.pack(side='right')
-		objective.set("-Take no action\n" +
+		objective.set("-Do Nothing\n" +
 					  "-Exit Setup")
 
 	def unset_exit_expln(event):
@@ -103,7 +102,7 @@ def launch():
 	main = Frame(root, width=400, height=200)
 	main.pack(pady=5)
 
-	logo = PhotoImage(file="images/GW_logo.ppm")
+	logo = PhotoImage(file="images/PGWLogo.ppm")
 
 	expln = StringVar()
 	objective = StringVar()
